@@ -216,3 +216,20 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+/.idea/.gitignore
+/.idea/63-502-Turbulence-and Boundary-Layers.iml
+/Dissipation160000.nc
+/Dissipation1600001.nc
+/H2Ol160000.nc
+/H2Ol1600001.nc
+/H2Ov160000.nc
+/H2Ov1600001.nc
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/Temperature160000.nc
+/Temperature1600001.nc
+/.idea/vcs.xml
+/VerticalVelocity.nc
+/VerticalVelocity1.nc
