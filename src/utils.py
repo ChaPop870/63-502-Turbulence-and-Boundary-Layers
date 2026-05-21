@@ -13,3 +13,7 @@ class AreaFractionStats:
     mean_downdraft_velocity: float | np.floating
     diff_mean_updraft_downdraft: float
 
+
+def plot_path_maker():
+    pass
+

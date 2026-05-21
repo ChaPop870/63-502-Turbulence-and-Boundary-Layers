@@ -17,15 +17,15 @@ class KPlane0500:
         self.w = xr.open_dataset(Path("../data/KPlane0500VerticalVelocity.nc"))
 
     @property
-    def temp_anom(self):
+    def temp_anom(self) -> np.ndarray:
         return self.temp.isel(t=0, z=0).T.values - self.temp.isel(t=0, z=0).mean(dim=("x", "y")).T.values
 
     @property
-    def temp_anom_flat(self):
+    def temp_anom_flat(self) -> np.ndarray:
         return self.temp_anom.ravel()
 
     @property
-    def temp_anom_flat_pdf(self):
+    def temp_anom_flat_pdf(self) -> tuple[ndarray[tuple[Any, ...], dtype[Any]], ndarray[tuple[Any, ...], dtype[Any]]]:
 
         pdf, bin_edges = np.histogram(
             self.temp_anom_flat, bins=Constants.bins, density=True
