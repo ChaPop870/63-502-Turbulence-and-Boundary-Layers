@@ -9,3 +9,5 @@ class Plotter:
         self.kplane0500 = kplane0500
         self.kplane0947 = kplane0947
 
+    def plot_horizontal_cross_section(self):
+        ...
