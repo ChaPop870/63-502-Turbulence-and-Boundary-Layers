@@ -1,7 +1,15 @@
 import numpy as np
 
-from kplanes import (KPlane0500, KPlane0947)
+from dataclasses import dataclass
 
 
-def calc_area_fraction(kplane: KPlane0500 | KPlane0947):
-    """Calculates area fractions of """
+@dataclass
+class AreaFractionStats:
+    area_of_updrafts: int
+    area_of_downdrafts: int
+    updraft_area_fraction: float
+    downdraft_area_fraction: float
+    mean_updraft_velocity: float | np.floating
+    mean_downdraft_velocity: float | np.floating
+    diff_mean_updraft_downdraft: float
+
