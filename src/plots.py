@@ -10,4 +10,5 @@ class Plotter:
         self.kplane0947 = kplane0947
 
     def plot_horizontal_cross_section(self):
-        ...
+        """Plot horizontal cross-section of temperature anomalies and vertical velocity."""
+        pass
