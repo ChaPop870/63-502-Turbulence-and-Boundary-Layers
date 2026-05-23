@@ -14,6 +14,12 @@ class AreaFractionStats:
     diff_mean_updraft_downdraft: float
 
 
+@dataclass
+class RootMeanSquares:
+    w_rms: int | float | np.floating
+    T_rms: int | float | np.floating
+
+
 def plot_path_maker():
     pass
 
