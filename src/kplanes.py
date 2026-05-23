@@ -6,15 +6,15 @@ from numpy import ndarray, dtype
 
 from config import (Constants)
 from pathlib import Path
-from utils import AreaFractionStats
+from utils import AreaFractionStats, RootMeanSquares
 
 
 class KPlane0500:
 
-    def __init__(self) -> None:
+    def __init__(self, temp_path: Path, w_path: Path) -> None:
 
-        self.temp = xr.open_dataset(Path("../data/KPlane0500Temperature160000.nc"))
-        self.w = xr.open_dataset(Path("../data/KPlane0500VerticalVelocity.nc"))
+        self.temp = xr.open_dataset(temp_path)
+        self.w = xr.open_dataset(w_path)
 
     @property
     def temp_anom(self) -> np.ndarray:
@@ -65,6 +65,10 @@ class KPlane0500:
             mean_downdraft_velocity,
             diff_mean_updraft_downdraft,
         )
+
+    @property
+    def rms(self) -> RootMeanSquares:
+        return RootMeanSquares
 
 
 class KPlane0947:
