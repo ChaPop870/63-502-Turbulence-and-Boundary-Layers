@@ -25,12 +25,29 @@ def plot_path_maker():
     pass
 
 
-def plot_joint_marginal_pdfs(fig, ax_joint, ax_top, ax_right, w_data, T_data):
+def plot_joint_marginal_pdfs(kplane: str, w_data, T_data):
 
-    cmap = plt.get_cmap("YlOrRd").copy()
+    fig = plt.figure(figsize=(12, 12))
+
+    gs = fig.add_gridspec(
+        2, 2,
+        width_ratios=[4, 1],
+        height_ratios=[1, 4],
+        hspace=0.05,
+        wspace=0.05
+    )
+
+    ax_joint = fig.add_subplot(gs[1, 0])
+    ax_top = fig.add_subplot(gs[0, 0], sharex=ax_joint)
+    ax_right = fig.add_subplot(gs[1, 1], sharey=ax_joint)
+
+    cmap = plt.get_cmap("inferno").copy()
     cmap.set_under("white")
 
     r = np.corrcoef(w_data, T_data)[0, 1]
+
+    t_95 = np.percentile(T_data, 0.95)
+    w_95 = np.percentile(w_data, 0.95)
 
     joint_pdf, w_joint_edges, T_joint_edges = np.histogram2d(
         w_data,
@@ -46,7 +63,7 @@ def plot_joint_marginal_pdfs(fig, ax_joint, ax_top, ax_right, w_data, T_data):
     )
 
     T_marginal_pdf, T_marginal_edges = np.histogram(
-        w_data,
+        T_data,
         bins=500,
         density=True
     )
@@ -59,7 +76,7 @@ def plot_joint_marginal_pdfs(fig, ax_joint, ax_top, ax_right, w_data, T_data):
         T_joint_edges,
         joint_pdf.T,
         shading='auto',
-        cmap=cmap
+        cmap=cmap,
     )
 
     ax_joint.text(
@@ -78,7 +95,9 @@ def plot_joint_marginal_pdfs(fig, ax_joint, ax_top, ax_right, w_data, T_data):
     )
 
     ax_top.plot(w_centers, w_marginal_pdf)
+    ax_top.axvline(w_95, linestyle="--")
     ax_right.plot(T_marginal_pdf, T_centers)
+    ax_right.axhline(t_95, linestyle="--")
 
     ax_joint.set_xlabel(r'Vertical Velocity $w$ / m s$^{-1}$')
     ax_joint.set_ylabel(r'Temperature Anomaly $T^\prime$ / K')
@@ -109,6 +128,6 @@ def plot_joint_marginal_pdfs(fig, ax_joint, ax_top, ax_right, w_data, T_data):
 
     cbar.set_label('Joint Probability Density Function')
 
-    fig.suptitle("kPlane0500 Joint PDF for vertical velocity and temperature anomaly with marginal PDFs", y=0.95)
+    fig.suptitle(f"{kplane} Joint PDF for vertical velocity and temperature anomaly with marginal PDFs", y=0.95)
 
 

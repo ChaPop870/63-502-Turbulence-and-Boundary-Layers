@@ -99,23 +99,14 @@ class Plotter:
         return None
 
     def plot_joint_marginal_pdfs(self):
-        fig = plt.figure(figsize=(12, 12))
 
-        gs = fig.add_gridspec(
-            2, 2,
-            width_ratios=[4, 1],
-            height_ratios=[1, 4],
-            hspace=0.05,
-            wspace=0.05
-        )
-
-        ax_joint = fig.add_subplot(gs[1, 0])
-        ax_top = fig.add_subplot(gs[0, 0], sharex=ax_joint)
-        ax_right = fig.add_subplot(gs[1, 1], sharey=ax_joint)
-
-        plot_joint_marginal_pdfs(fig, ax_joint, ax_top, ax_right, self.kplane0500.w_flat, self.kplane0500.temp_anom_flat)
+        plot_joint_marginal_pdfs("KPlane0500", self.kplane0500.w_flat, self.kplane0500.temp_anom_flat)
 
         plt.savefig(
             Constants.plot_storage_directory / "joint_marginal_pdfs.png"
         )
+
+        plt.close()
+
+        plot_joint_marginal_pdfs("KPlane0947", self.kplane0947.w_flat, self.kplane0947.temp_anom_flat)
 
