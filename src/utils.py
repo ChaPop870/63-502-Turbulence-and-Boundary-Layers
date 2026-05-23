@@ -111,5 +111,4 @@ def plot_joint_marginal_pdfs(fig, ax_joint, ax_top, ax_right, w_data, T_data):
 
     fig.suptitle("kPlane0500 Joint PDF for vertical velocity and temperature anomaly with marginal PDFs", y=0.95)
 
-    return fig, ax_joint, ax_right, ax_top
 
