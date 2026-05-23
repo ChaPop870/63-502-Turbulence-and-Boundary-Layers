@@ -73,10 +73,9 @@ class KPlane0500:
 
 class KPlane0947:
 
-    def __init__(self) -> None:
-
-        self.temp = xr.open_dataset(Path("../data/KPlane0947Temperature160000.nc"))
-        self.w = xr.open_dataset(Path("../data/KPlane0947VerticalVelocity.nc"))
+    def __init__(self, temp_path: Path, w_path: Path) -> None:
+        self.temp = xr.open_dataset(temp_path)
+        self.w = xr.open_dataset(w_path)
 
     @property
     def temp_anom(self) -> np.ndarray:
