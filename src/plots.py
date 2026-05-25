@@ -1,15 +1,16 @@
 import matplotlib.pyplot as plt
 
 from config import Constants
-from kplanes import (KPlane0500, KPlane0947)
+from kplanes import (KPlane0500, KPlane0947, KPlaneCombined)
 from utils import plot_joint_marginal_pdfs
 
 
 class Plotter:
 
-    def __init__(self, kplane0500: KPlane0500, kplane0947: KPlane0947) -> None:
+    def __init__(self, kplane0500: KPlane0500, kplane0947: KPlane0947, kplane_combined: KPlaneCombined) -> None:
         self.kplane0500 = kplane0500
         self.kplane0947 = kplane0947
+        self.kplane_combined = kplane_combined
 
     def plot_horizontal_cross_section(self):
         """Plot horizontal cross-section of temperature anomalies and vertical velocity."""
@@ -100,18 +101,25 @@ class Plotter:
 
     def plot_joint_marginal_pdfs(self):
 
-        plot_joint_marginal_pdfs("KPlane0500", self.kplane0500.w_flat, self.kplane0500.temp_anom_flat)
-
+        plot_joint_marginal_pdfs("KPlane0500", self.kplane0500)
         plt.savefig(
             Constants.plot_storage_directory / "joint_marginal_pdfs_0500.png"
         )
 
         plt.close()
 
-        plot_joint_marginal_pdfs("KPlane0947", self.kplane0947.w_flat, self.kplane0947.temp_anom_flat)
+        plot_joint_marginal_pdfs("KPlane0947", self.kplane0947)
 
         plt.savefig(
             Constants.plot_storage_directory / "joint_marginal_pdfs_0947.png"
+        )
+
+        plt.close()
+
+        plot_joint_marginal_pdfs("KPlaneCombined", self.kplane_combined)
+
+        plt.savefig(
+            Constants.plot_storage_directory / "joint_marginal_pdfs_combined.png"
         )
 
         plt.close()
