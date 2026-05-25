@@ -5,6 +5,7 @@ import xarray as xr
 from numpy import ndarray, dtype
 
 from config import (Constants)
+from scipy.stats import skew
 from pathlib import Path
 from utils import AreaFractionStats, RootMeanSquares
 
@@ -68,7 +69,22 @@ class KPlane0500:
 
     @property
     def rms(self) -> RootMeanSquares:
-        return RootMeanSquares
+
+        w_rms = np.sqrt(np.mean(self.w ** 2))
+        T_rms = np.sqrt(np.mean(self.temp ** 2))
+
+        return RootMeanSquares(
+            w_rms,
+            T_rms
+        )
+
+    @property
+    def temp_skew(self):
+        return skew(self.temp_anom_flat)
+
+    @property
+    def w_skew(self):
+        return skew(self.w_flat)
 
 
 class KPlane0947:
