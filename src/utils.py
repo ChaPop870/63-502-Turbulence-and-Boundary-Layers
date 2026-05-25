@@ -95,9 +95,9 @@ def plot_joint_marginal_pdfs(kplane: str, w_data, T_data):
     )
 
     ax_top.plot(w_centers, w_marginal_pdf)
-    ax_top.axvline(w_95, linestyle="--")
+    ax_top.axvline(w_95, linestyle="--", label="95% percentile")
     ax_right.plot(T_marginal_pdf, T_centers)
-    ax_right.axhline(t_95, linestyle="--")
+    ax_right.axhline(t_95, linestyle="--", label="95% percentile")
 
     ax_joint.set_xlabel(r'Vertical Velocity $w$ / m s$^{-1}$')
     ax_joint.set_ylabel(r'Temperature Anomaly $T^\prime$ / K')

@@ -98,15 +98,21 @@ class Plotter:
 
         return None
 
-    def plot_joint_marginal_pdfs(self):
+    def plot_joint_marginal_pdfs_0500(self):
 
         plot_joint_marginal_pdfs("KPlane0500", self.kplane0500.w_flat, self.kplane0500.temp_anom_flat)
 
         plt.savefig(
-            Constants.plot_storage_directory / "joint_marginal_pdfs.png"
+            Constants.plot_storage_directory / "joint_marginal_pdfs_0500.png"
         )
 
         plt.close()
 
         plot_joint_marginal_pdfs("KPlane0947", self.kplane0947.w_flat, self.kplane0947.temp_anom_flat)
+
+        plt.savefig(
+            Constants.plot_storage_directory / "joint_marginal_pdfs_0947.png"
+        )
+
+        plt.close()
 
