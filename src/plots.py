@@ -98,7 +98,7 @@ class Plotter:
 
         return None
 
-    def plot_joint_marginal_pdfs_0500(self):
+    def plot_joint_marginal_pdfs(self):
 
         plot_joint_marginal_pdfs("KPlane0500", self.kplane0500.w_flat, self.kplane0500.temp_anom_flat)
 
